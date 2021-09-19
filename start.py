@@ -8,7 +8,7 @@ con = pymongo.MongoClient("mongodb+srv://admin:Ostruca1203@cluster0.rsnsq.mongod
 db = con.datosprueba
 
 #coleccion:
-tuiteos = db.tuiteos1  
+tuiteos = db.tuiteos3 
 
 #querys:
 #resultado = tuiteos.find({"apporigen":"Twitter for Android"}).limit(1500)
@@ -20,7 +20,7 @@ tuiteos = db.tuiteos1
 #print (resultado[0]['fecha'], resultado[99]['fecha'])
 #print (resultado)  #el pymongo muestra el cursor (cuando hay mas de un resultado) pero no el contenido...
 #print (f"Fecha: {resultado['fecha']}, Usuario: {resultado['usuario']}")
-resultado = tuiteos.find({},{'fecha' : 1}).limit(5000).sort('fecha', pymongo.DESCENDING)
+resultado = tuiteos.find({},{'fecha' : 1, '_id': 0, 'texto': 1}).limit(5000).sort('fecha', pymongo.ASCENDING)
 #print (resultado)
 
 
