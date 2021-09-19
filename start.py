@@ -1,5 +1,6 @@
 import pymongo
 from pymongo import MongoClient
+import datetime
 
 #conexión:
 #con = MongoClient('localhost',27017)  #conexión local
@@ -10,13 +11,18 @@ db = con.datosprueba
 tuiteos = db.tuiteos1  
 
 #querys:
-resultado = tuiteos.find({"apporigen":"Twitter for Android"}).limit(1500)
-
+#resultado = tuiteos.find({"apporigen":"Twitter for Android"}).limit(1500)
+#d = datetime.datetime(2018, 5, 22,8)
+#resultado = tuiteos.find({'fecha': {'$gt': d}, 'usuariocompleto':'capitan escabio'}).count()
+#resultado = tuiteos.find({'usuariocompleto': None}).count()
+#resultado = tuiteos.find({}, {'usuariocompleto':1}).sort('usuariocompleto').limit(10)
 #print ('fecha:', resultado['fecha'],'\n','usuario: ', resultado['usuario'])
 #print (resultado[0]['fecha'], resultado[99]['fecha'])
 #print (resultado)  #el pymongo muestra el cursor (cuando hay mas de un resultado) pero no el contenido...
 #print (f"Fecha: {resultado['fecha']}, Usuario: {resultado['usuario']}")
+resultado = tuiteos.find({},{'fecha' : 1}).limit(5000).sort('fecha', pymongo.DESCENDING)
 #print (resultado)
+
 
 #recorrer un cursor
 for elemento in resultado:
